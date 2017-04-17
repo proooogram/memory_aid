@@ -1,0 +1,43 @@
+安装
+https://grafana.com/grafana/download
+wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.2.0-1.x86_64.rpm 
+ yum localinstall grafana-4.2.0-1.x86_64.rpm 
+ 
+ cli
+ influx  -host '192.168.100.74' -port '8086' -username 'userA' -password 'pwdA' -database 'dbA' -import -path=grafana_data_demo
+ 
+ 例子插件
+  grafana-cli plugins install grafana-example-app
+  grafana-cli plugins install raintank-worldping-app
+  
+ 绘图
+ https://www.youtube.com/watch?v=sKNZMtoSHN4&index=7&list=PLDGkOdUX1Ujo3wHw9-z5Vo12YLqXRjzg2
+
+ dashboard api
+ http://docs.grafana.org/http_api/dashboard/
+ 在应用中产生dashboard和其下的图表，还没测试过。
+ 
+ 
+ 改用https  （需要产生SLL证书）  
+ openssl req -new -key https-grafana.key -out https-grafana.csr
+ openssl x509 -req -days 365 -in https-grafana.csr -signkey https-grafana.key -out https-grafana.crt
+ 或者:openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout https-grafana.key -out https-grafana.crt  这条命令 应该可以替代上面两条 没仔细看过 待看
+ 随便找一个ssl产生证书的参考:   http://docs.hortonworks.com/HDPDocuments/Ambari-2.2.2.18/bk_ambari-user-guide/content/_setup_https_for_grafana.html
+ 
+ 
+ admin密码修改: 不需要 grafana-cli reset-admin-password 啥的     直接在web页面上可以修改了
+ 
+stmp linux服务端本地发出邮件
+（只能从服务端发出到运维等人员的公网邮箱中 不能发送到linux服务器  linux服务器上不需要配置公网邮件地址）
+
+
+
+grafana简要介绍 小书
+https://xtutu.gitbooks.io/influxdb-handbook
+
+
+modify_grafana.ini 是修改的配置 可以和刚刚安装好的配置对比 可知道改了哪些
+
+注意:
+grafana 当选了 在服务端连接datasource时  由于需要从浏览器传递大量 sql 语句到服务端 ， 此时如果你用了主流防火墙并开启了相关web安全防护， 防火墙会认为这些sql是恶意的注入攻击，从而拦截此请求，导致此datasource测试总是返回502。
+	解决办法有：在路由器上开启vpn，使得办公室以vpn连到机房； 用https。  当然了，关闭防火墙的web防护也可以，但这不可取。

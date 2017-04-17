@@ -1,0 +1,4 @@
+安装很简单 主要需要了解下概念
+
+influxdb简要介绍 小书
+https://xtutu.gitbooks.io/influxdb-handbook
