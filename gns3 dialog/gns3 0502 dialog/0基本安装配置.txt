@@ -1,0 +1,2 @@
+https://ccie.lol/blog/2016/12/28/gns3-iou-1-5-0-and-1-5-1-installation-guide/
+按照这个来操作
