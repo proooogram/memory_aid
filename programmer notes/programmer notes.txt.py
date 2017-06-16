@@ -1,4 +1,4 @@
-.
+.java lib:
 	以下有摘录自网上的,也有自己理解总结的,有时有标记,有时没有
 
 Hamcrest:UI验证,数据过滤,单元测试   https://code.google.com/archive/p/hamcrest/wikis/Tutorial.wiki   
@@ -40,3 +40,11 @@ AspectJ: java的 面向方面AOP 编程
 	
 byte-buddy: java字节码运行时操纵,无需编译器帮助
 	Byte Buddy is a code generation and manipulation library for creating and modifying Java classes during the runtime of a Java application and without the help of a compiler	
+	
+
+.术语:
+
+Software_release_life_cycle:
+	M1:Milestone里程碑1
+	RC:Release Candidate:Release候选人
+	
